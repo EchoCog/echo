@@ -37,3 +37,14 @@ The following workflows were removed as they were not appropriate for this Pytho
 - This repository is primarily Python-based, focusing on AI consciousness exploration
 - Workflows are designed to be lightweight and non-blocking to facilitate rapid development
 - For adding new workflows, ensure they align with the project's Python/AI focus
+
+## AI Inference Tests (`ai-inference-tests.yml`)
+
+- **Trigger:** Pushes/PRs to `main`/`develop`, manual dispatch
+- **Purpose:** Validates AI inference prompts and output handling across multiple scenarios
+- **Migration note (Aug 2026):** GitHub Models was retired on 2026-07-30 (the legacy
+  `https://models.github.ai/inference` endpoint now returns `410 Gone`). This workflow
+  therefore uses `actions/ai-inference@v3`, which is backed exclusively by the
+  GitHub Copilot CLI. Live inference requires a `COPILOT_PAT` secret with Copilot
+  access; when the secret is absent (e.g. forks), the workflow exercises the prompt
+  preparation and validation pipeline with a deterministic fallback instead.
